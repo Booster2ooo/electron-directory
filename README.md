@@ -16,17 +16,17 @@ var electronDirectory = require('electron-directory')
   ;
 
 electronDirectory(__dirname)
-	.then(function(electronDirectoryInstance) {
-		dirHelper = electronDirectoryInstance;
-		return dirHelper.getElectronPath();
-	})
-	.then(function(info) {
-		electronExecPath = info;		
-		return dirHelper.getApplicationPath();
-	})
-	.then(function(info) {
-		applicationJsPath = info;
-	});
+    .then(function(electronDirectoryInstance) {
+        dirHelper = electronDirectoryInstance;
+        return dirHelper.getElectronPath();
+    })
+    .then(function(info) {
+        electronExecPath = info;        
+        return dirHelper.getApplicationPath();
+    })
+    .then(function(info) {
+        applicationJsPath = info;
+    });
 ```
 Read the methods section for more info.
 
@@ -37,9 +37,9 @@ Returns the full path relative to the executing Electron directory.
 
 ```javascript
 electronDirectoryInstance.getElectronPath('config.json')
-	.then(function(path) {
-		console.log(path);
-	});
+    .then(function(path) {
+        console.log(path);
+    });
 ```
 
 **getApplicationPath(path)**
@@ -48,9 +48,9 @@ Returns the full path relative to the application directory, whenever it's withi
 
 ```javascript
 electronDirectoryInstance.getApplicationPath('/lib/mylib.js')
-	.then(function(path) {
-		console.log(path);
-	});
+    .then(function(path) {
+        console.log(path);
+    });
 ```
 
 ## Usage sample
@@ -61,27 +61,27 @@ Here is a use case that illustrate the whole process. We will grab a default JSO
 #!/usr/bin/env node
 
 try {
-	var app = require('app')
-	  , BrowserWindow = require('browser-window') 
-	  , windows = {}
-	  ;
-	app.on('window-all-closed', function() {
-		if (process.platform != 'darwin') {
-			app.quit();
-		}
-	});
-	app.on('ready', function() {
-		windows["main"] = new BrowserWindow({width: 1000, height: 800, title: "Electron Directory Sample", defaultEncoding: "utf8"});
-		windows["main"].loadURL('file://' + __dirname + '/app.html');
+    var app = require('app')
+      , BrowserWindow = require('browser-window') 
+      , windows = {}
+      ;
+    app.on('window-all-closed', function() {
+        if (process.platform != 'darwin') {
+            app.quit();
+        }
+    });
+    app.on('ready', function() {
+        windows["main"] = new BrowserWindow({width: 1000, height: 800, title: "Electron Directory Sample", defaultEncoding: "utf8"});
+        windows["main"].loadURL('file://' + __dirname + '/app.html');
         windows["main"].toggleDevTools();
-		windows["main"].on('closed', function() {
-			delete windows["main"];
-		});
-	});
+        windows["main"].on('closed', function() {
+            delete windows["main"];
+        });
+    });
 }
 catch(ex) {
-	console.log(ex);
-	ex.stack && console.log(ex.stack);
+    console.log(ex);
+    ex.stack && console.log(ex.stack);
 }
 
 ```
@@ -89,36 +89,36 @@ catch(ex) {
 **/js/main.js**
 ```javascript
 try {
-	var configHelperModule = require('./js/modules/config-helper.js')
-	  , configHelper
-	  , config
-	  , initConfigHelper = function initConfigHelper() {
-			return new Promise(function(resolve, reject) {
-				configHelperModule(__dirname)
-					.then(function (helper) {
-						configHelper = helper;
-						return configHelper.getConfig();
-					})
-					.then(function (cfg) {
-						config = cfg;
-						return resolve();
-					})
-					.catch(reject);
-			});
-		}
-	  ;
-	initConfigHelper()
-		.then(function(children_infos) {
-			console.log('config loaded');
-		})
-		.catch(function(err) {
-			console.error(err);
-			err.stack && console.error(err.stack);
-		});
+    var configHelperModule = require('./js/modules/config-helper.js')
+      , configHelper
+      , config
+      , initConfigHelper = function initConfigHelper() {
+            return new Promise(function(resolve, reject) {
+                configHelperModule(__dirname)
+                    .then(function (helper) {
+                        configHelper = helper;
+                        return configHelper.getConfig();
+                    })
+                    .then(function (cfg) {
+                        config = cfg;
+                        return resolve();
+                    })
+                    .catch(reject);
+            });
+        }
+      ;
+    initConfigHelper()
+        .then(function(children_infos) {
+            console.log('config loaded');
+        })
+        .catch(function(err) {
+            console.error(err);
+            err.stack && console.error(err.stack);
+        });
 }
 catch(ex) {
-	console.error(ex);
-	ex.stack && console.error(ex.stack);
+    console.error(ex);
+    ex.stack && console.error(ex.stack);
 }
 ```
 
