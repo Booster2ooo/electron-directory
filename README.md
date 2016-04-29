@@ -71,7 +71,7 @@ try {
 		}
 	});
 	app.on('ready', function() {
-		windows["main"] = new BrowserWindow({width: 1000, height: 800, title: "NoIRC XDCC Client", defaultEncoding: "utf8"});
+		windows["main"] = new BrowserWindow({width: 1000, height: 800, title: "Electron Directory Sample", defaultEncoding: "utf8"});
 		windows["main"].loadURL('file://' + __dirname + '/app.html');
         windows["main"].toggleDevTools();
 		windows["main"].on('closed', function() {

@@ -1,8 +1,14 @@
 {
   "name": "electron-directory",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Helps work with Electron directories/path whenever it's asar packed or not.",
-  "keywords:": [ "electron", "directory", "helper", "path", "application" ],
+  "keywords:": [
+    "electron",
+    "directory",
+    "helper",
+    "path",
+    "application"
+  ],
   "main": "lib/electron-directory.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

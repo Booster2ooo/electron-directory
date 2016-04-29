@@ -1,6 +1,6 @@
 var path = require('path')
   , fs = require('fs')
-  , electronDirectory = require('./electron-directory.js')
+  , electronDirectory = require('electron-directory')
 
   , readFilePromise = function readFilePromise(file, options) {
         return new Promise(function(resolve, reject) {
@@ -51,7 +51,7 @@ var path = require('path')
                                 readFilePromise(defaultConfigPath, { encoding:'utf8'})
                                     .then(function(data) {
                                         data = JSON.parse(data);
-                                        return setConfig(data); //writeFilePromise(configPath, data, { flag : 'w+'});
+                                        return setConfig(data);
                                     })
                                     .then(function() {
                                         return resolve(config);
