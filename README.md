@@ -56,7 +56,7 @@ electronDirectoryInstance.getApplicationPath('/lib/mylib.js')
 ## Usage sample
 Here is a use case that illustrate the whole process. We will grab a default JSON config file in the application directory and, if the config.json doesn't exist yet, will create it into the Electron directory.
 
-**/app.js
+**/app.js**
 ```javascript
 #!/usr/bin/env node
 
@@ -86,7 +86,7 @@ catch(ex) {
 
 ```
 
-**/js/main.js
+**/js/main.js**
 ```javascript
 try {
 	var configHelperModule = require('./js/modules/config-helper.js')
@@ -122,7 +122,7 @@ catch(ex) {
 }
 ```
 
-**/js/modules/config-helper.js
+**/js/modules/config-helper.js**
 ```javascript
 var path = require('path')
   , fs = require('fs')
