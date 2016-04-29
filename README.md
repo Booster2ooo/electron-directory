@@ -149,12 +149,6 @@ var path = require('path')
         });
     }
 
-
-  , _eventsNames = {
-        addingConfigServer:     'adding-config-server'
-      , addedConfigServer:      'added-config-server'
-    }
-
   , configHelper = function configHelper(dirname) {
         return new Promise(function(moduleResolve, moduleReject) {
             var configBase = 'config.json'
@@ -195,66 +189,9 @@ var path = require('path')
                             .catch(reject);
                     });
                 }
-              , getServerByAddress = function getServerByAddress(address) {
-                    return new Promise(function(resolve, reject) {
-                        if(!config.servers || !config.servers.length) {
-                            return resolve();
-                        }
-                        return resolve(config.servers.filter(function(server) {
-                            return server.address === address;
-                        }));
-                    });
-                }
-              , pushServer = function(server) {
-                    return new Promise(function(resolve, reject) {
-                        config.servers.push(server);
-                        return resolve(server);
-                    })
-                }
-              , emitServerAdded = function(server) {
-                    return new Promise(function(resolve, reject) {
-                        process.emit(_eventsNames.addedConfigServer,server);
-                        return resolve(server);
-                    });
-                }
-              , addServerToConfig = function(server) {
-                    return new Promise(function(resolve, reject) {
-                        var rejectFound = function rejectFound(result) {
-                            if(result && result.length) {
-                                return Promise.reject('a server with the same address already exists');
-                            }
-                            return Promise.resolve(server);
-                        };
-                        if(!server.address) {
-                            return reject('no address specified');
-                        }
-                        getServerByAddress(server.address)
-                            .then(rejectFound)
-                            .then(pushServer)
-                            .then(emitServerAdded)
-                            .then(function() {
-                                return setConfig(config);
-                            })
-                            .then(resolve)
-                            .catch(reject);
-                    });
-                }
-              , bindHandlers = function bindHandlers() {
-                    return new Promise(function(resolve, reject) {
-                        process.on(_eventsNames.addingConfigServer, handlers.onAddingConfigServer);
-                        return resolve();
-                    });
-                }
-              , handlers = {
-                    onAddingConfigServer: function onAddingConfigServer(server) {
-                        addServerToConfig(server);
-                    }
-                }
               , modulePublics = {
                     getConfig: getConfig
                   , setConfig: setConfig
-                  , getServerByAddress: getServerByAddress
-                  , eventsNames: _eventsNames
                 }
               ;
             electronDirectory(dirname)
@@ -268,9 +205,6 @@ var path = require('path')
                 })
                 .then(function(info) {
                     defaultConfigPath = info;
-                    return bindHandlers();
-                })
-                .then(function() {
                     return moduleResolve(modulePublics);
                 })
                 .catch(moduleReject);
