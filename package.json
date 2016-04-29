@@ -1,0 +1,19 @@
+{
+  "name": "electron-directory",
+  "version": "0.0.1",
+  "description": "Helps work with Electron directories/path whenever it's asar packed or not.",
+  "keywords:": [ "electron", "directory", "helper", "path", "application" ],
+  "main": "lib/electron-directory.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Booster2ooo",
+  "license": "ISC",
+  "dependencies": {},
+  "homepage": "https://github.com/Booster2ooo/electron-directory",
+  "repository": "git://github.com/Booster2ooo/electron-directory",
+  "bugs": {
+    "url": "https://github.com/Booster2ooo/electron-directory/issues"
+  },
+  "readmeFilename": "README.md"
+}

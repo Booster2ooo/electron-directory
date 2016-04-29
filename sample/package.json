@@ -1,0 +1,16 @@
+{
+  "name": "electron-directory-sample",
+  "version": "0.0.1",
+  "description": "Illustrate Electron-directory usage",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron app.js"
+  },
+  "author": "Booster2ooo",
+  "license": "ISC",
+  "dependencies": {
+    "electron-prebuilt": "^0.37.0",
+	"electron-directory": "^0.0.1"
+  }
+}
