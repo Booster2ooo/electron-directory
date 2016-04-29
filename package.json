@@ -1,6 +1,6 @@
 {
   "name": "electron-directory",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Helps work with Electron directories/path whenever it's asar packed or not.",
   "keywords:": [
     "electron",
